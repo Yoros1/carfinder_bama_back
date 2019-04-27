@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html dir="rtl"
+      lang="FA">
+<head>
+  {% load staticfiles %}
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0"
+        name="viewport">
+  <meta content="ie=edge"
+        http-equiv="X-UA-Compatible">
+  <title>car_fetch</title>
+  <link href="{% static '/mycss.css' %}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <ul class="nav_ul">
+                    <li class="nav_li"><a href="#"></a></li>
+                    <li class="nav_li"><a href="#">درباره ما</a></li>
+                    <li class="nav_li"><a href="#">تاریخچه</a></li>
+                    <li class="nav_li"><a href="#">علاقمندی ها</a></li>
+                    <li class="nav_li"><a href="#">تماس با ما</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+</head>
+<body>
+    {% block content %}
+    <a href="127.0.0.1:8000"><img src="./../static/image/logo.jpg" alt="Carfind" style="margin-left:auto; 
+    margin-right:auto; margin-top:5%; margin-bottom:7px; display:block; border:none;"></a>
+    <form action="{% url 'main:search_result' %}" method="POST">
+        {% csrf_token %}
+        <div class="rcorners2" style="height:40px;">
+            <input type="text" name="term" class="srch-card" placeholder="نام خودرو...">
+        </div>
+        <button type="submit" class="srch-btn" style="font-size:14px; margin-left:auto; margin-right:auto; margin-top:20px;
+         height:35px; display:block; outline:none;">پیدا کن</button>
+    </form><br><br>
+    {% endblock content %}
+</body>
+</html>
