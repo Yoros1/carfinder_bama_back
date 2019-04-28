@@ -6,7 +6,8 @@ from googlesearch import search
 from django.template import loader
 from django.http import HttpResponse
 from django.views.generic import TemplateView
-from .tasks import TestFetch
+from .tasks import fetch
+from . import tasks
 
 class HomePageView(TemplateView):
     ''' function docstring'''
@@ -31,10 +32,8 @@ def search_result(request):
         car_per_page = int(re.findall(r'\[\s+\d+\s+تا\s+(\d+)\s+از\s+\d+', nav)[0])
         total_car_num = int(re.findall(r'\[\s+\d+\s+تا\s+\d+\s+از\s+(\d+)', nav)[0])
         last_page = total_car_num // car_per_page
-        #tasks.fetch(last_page, link)
-        my_task = TestFetch(link, last_page)
-        my_task.delay()
+        fetch.delay(last_page, link)
         while True:
-            if len(my_task.MAIN_LIST) > 9:
-                initial_list = my_task.MAIN_LIST[0:10]
+            if len(tasks.MAIN_LIST) > 9:
+                initial_list = tasks.MAIN_LIST[0:10]
                 return HttpResponse(temp.render({'initial_list' : initial_list}, request))
