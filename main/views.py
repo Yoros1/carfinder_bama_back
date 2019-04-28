@@ -1,6 +1,5 @@
 ''' import doc string '''
 import re
-import time
 import requests
 from bs4 import BeautifulSoup
 from googlesearch import search
@@ -34,7 +33,7 @@ def search_result(request):
         last_page = total_car_num // car_per_page
         #tasks.fetch(last_page, link)
         my_task = TestFetch(link, last_page)
-        my_task.delay(link, last_page)
+        my_task.delay()
         while True:
             if len(my_task.MAIN_LIST) > 9:
                 initial_list = my_task.MAIN_LIST[0:10]

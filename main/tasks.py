@@ -2,7 +2,7 @@
 import re
 import requests
 from bs4 import BeautifulSoup
-from celery import Task
+from celery import shared_task
 
 def inspect(detail):
     '''func Docstring'''
@@ -54,13 +54,12 @@ def inspect(detail):
     car_data = (brand, model, style, release_date, odo_meter,
                 price, pre_pay, ins_amo, ins_num, description)
     return car_data
-#MAIN_LIST = []
+MAIN_LIST = []
 TEST_LIST = []
+@shared_task
 def fetch(last_page, link):
     ''' fetch doc string'''
     car_count = 0
-    liatdata = ['10','20','30','40','50','60','70','80','90','110'],'25','8595','596595','5965'
-    TEST_LIST.append(liatdata)
     for i in range(1, last_page):
         page_number = '?page=' + str(i)
         mylink = link + page_number
@@ -72,20 +71,20 @@ def fetch(last_page, link):
             data = inspect(detail) # detail link preparing for process
             if data != 0:
                 car_count += 1
-               # MAIN_LIST.append(data)
+                MAIN_LIST.append(data)
     return 1
 
-class TestFetch(Task):
-    '''doc'''
-    ignore_result = True
-    MAIN_LIST = []
-    def __init__(self, link, last_page):
-        self.link = link
-        self.last_page = last_page
+# class TestFetch(Task):
+#     '''doc'''
+#     ignore_result = True
+#     MAIN_LIST = []
+#     def __init__(self, link, last_page):
+#         self.link = link
+#         self.last_page = last_page
 
-    def run(self):
-        '''doc'''
-        for i in range(0, self.last_page):
-            if i%2 == 0:
-                self.MAIN_LIST.append(str(i)+'   '+self.link)
-        return self.MAIN_LIST
+#     def run(self):
+#         '''doc'''
+#         for i in range(0, self.last_page):
+#             if i%2 == 0:
+#                 self.MAIN_LIST.append(str(i)+'   '+self.link)
+#         return self.MAIN_LIST
