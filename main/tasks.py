@@ -20,6 +20,7 @@ def inspect(detail):
     style = re.sub(r'، ', '', style).strip() ############
     odo_label = soup.find('span', attrs={'class' : 'label'}, string='كاركرد   ')
     odo_meter = re.sub(r',', '', odo_label.find_next_sibling('span').text).strip()
+    price = 0
     if odo_meter == 'کارتکس':
         odo_meter = 0
         description += '//کارتکس//'

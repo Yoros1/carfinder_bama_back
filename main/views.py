@@ -37,3 +37,5 @@ def search_result(request):
             if len(tasks.MAIN_LIST) > 9:
                 initial_list = tasks.MAIN_LIST[0:10]
                 return HttpResponse(temp.render({'initial_list' : initial_list}, request))
+            else:
+                continue
