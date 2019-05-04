@@ -55,11 +55,11 @@ def inspect(detail):
     car_data = (brand, model, style, release_date, odo_meter,
                 price, pre_pay, ins_amo, ins_num, description)
     return car_data
-MAIN_LIST = []
-TEST_LIST = []
+
 @shared_task
 def fetch(last_page, link):
     ''' fetch doc string'''
+    main_list = []
     car_count = 0
     for i in range(1, last_page):
         page_number = '?page=' + str(i)
@@ -72,7 +72,7 @@ def fetch(last_page, link):
             data = inspect(detail) # detail link preparing for process
             if data != 0:
                 car_count += 1
-                MAIN_LIST.append(data)
+                main_list.append(data)
     return 1
 
 # class TestFetch(Task):

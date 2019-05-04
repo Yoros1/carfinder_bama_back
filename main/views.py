@@ -1,5 +1,6 @@
 ''' import doc string '''
 import re
+import time
 import requests
 from bs4 import BeautifulSoup
 from googlesearch import search
@@ -7,7 +8,6 @@ from django.template import loader
 from django.http import HttpResponse
 from django.views.generic import TemplateView
 from .tasks import fetch
-from . import tasks
 
 class HomePageView(TemplateView):
     ''' function docstring'''
@@ -34,8 +34,8 @@ def search_result(request):
         last_page = total_car_num // car_per_page
         fetch.delay(last_page, link)
         while True:
-            if len(tasks.MAIN_LIST) > 9:
-                initial_list = tasks.MAIN_LIST[0:10]
+            if len(fetch.main_list) > 9:
+                initial_list = fetch.main_list[0:10]
                 return HttpResponse(temp.render({'initial_list' : initial_list}, request))
             else:
-                continue
+                time.sleep(1)
