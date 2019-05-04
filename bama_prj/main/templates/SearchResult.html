@@ -1,0 +1,48 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<form action="" method="get">
+    <button class="srch-btn" style="font-size:14px; height:29px; width:60px;
+        display:block; outline:none; float:right; margin-right:17%; margin-top: 10px; ">پیدا کن
+    </button>
+    <div class="rcorners2" style='float:right; height:25px; width:50%; margin-top: 10px; margin-left:6px;
+    margin-right:8px;'>
+        <input style="height:100%;" type="text" placeholder="نام خودرو ..." class="srch-card">
+    </div>
+</form>
+<a href="127.0.0.1:8000"><img src="./../static/image/mini_logo.jpg" alt="Carfind" 
+    style=" margin-right:auto; margin-top:11px; display:block; border:none; float:right; ">
+</a>
+<br>
+<br>
+<br>
+<div class="result_container">
+    <table>
+        <tr>
+            <th>ردیف</th>
+            <th>برند</th>
+            <th>مدل</th>
+            <th>استایل</th>
+            <th>سال تولید</th>
+            <th>کارکرد</th>
+            <th>قیمت</th>
+            <th>پیش پرداخت</th>
+            <th>مبلغ هر قسط</th>
+            <th>تعداد اقساط</th>
+            <th>توضیحات</th>
+        </tr>
+        {% for item  in initial_list %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                {% for data in item %}
+                    <td>
+                        {{data}}
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        
+    </table>
+</div>
+
+{% endblock content %}
