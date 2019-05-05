@@ -73,7 +73,8 @@ def fetch(last_page, link):
             if data != 0:
                 car_count += 1
                 main_list.append(data)
-    return 1
+                if car_count > 9:
+                    return main_list
 
 # class TestFetch(Task):
 #     '''doc'''

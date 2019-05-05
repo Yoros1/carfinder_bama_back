@@ -1,6 +1,5 @@
 ''' import doc string '''
 import re
-import time
 import requests
 from bs4 import BeautifulSoup
 from googlesearch import search
@@ -32,10 +31,6 @@ def search_result(request):
         car_per_page = int(re.findall(r'\[\s+\d+\s+تا\s+(\d+)\s+از\s+\d+', nav)[0])
         total_car_num = int(re.findall(r'\[\s+\d+\s+تا\s+\d+\s+از\s+(\d+)', nav)[0])
         last_page = total_car_num // car_per_page
-        fetch.delay(last_page, link)
-        while True:
-            if len(fetch.main_list) > 9:
-                initial_list = fetch.main_list[0:10]
-                return HttpResponse(temp.render({'initial_list' : initial_list}, request))
-            else:
-                time.sleep(1)
+        initial_list = fetch.delay(last_page, link).get()
+        return HttpResponse(temp.render({'initial_list' : initial_list}, request))
+        
