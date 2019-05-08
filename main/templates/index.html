@@ -2,6 +2,9 @@
 <html dir="rtl"
       lang="FA">
 <head>
+  <title></title>
+</head>
+<body>
   {% load staticfiles %}
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1.0"
@@ -9,34 +12,51 @@
   <meta content="ie=edge"
         http-equiv="X-UA-Compatible">
   <title>car_fetch</title>
-  <link href="{% static '/mycss.css' %}" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <header class="header">
-        <div class="container">
-            <nav class="nav">
-                <ul class="nav_ul">
-                    <li class="nav_li"><a href="#"></a></li>
-                    <li class="nav_li"><a href="#">درباره ما</a></li>
-                    <li class="nav_li"><a href="#">تاریخچه</a></li>
-                    <li class="nav_li"><a href="#">علاقمندی ها</a></li>
-                    <li class="nav_li"><a href="#">تماس با ما</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-</head>
-<body>
-    {% block content %}
-    <a href="127.0.0.1:8000"><img src="./../static/image/logo.jpg" alt="Carfind" style="margin-left:auto; 
-    margin-right:auto; margin-top:5%; margin-bottom:7px; display:block; border:none;"></a>
-    <form action="{% url 'main:search_result' %}" method="POST">
-        {% csrf_token %}
-        <div class="rcorners2" style="height:40px;">
-            <input type="text" name="term" class="srch-card" placeholder="نام خودرو...">
-        </div>
-        <button type="submit" class="srch-btn" style="font-size:14px; margin-left:auto; margin-right:auto; margin-top:20px;
-         height:35px; display:block; outline:none;">پیدا کن</button>
-    </form><br><br>
-    {% endblock content %}
+  <link href="{% static '/mycss.css' %}"
+        rel="stylesheet">
+  <meta content="width=device-width, initial-scale=1"
+        name="viewport">
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <ul class="nav_ul">
+          <li class="nav_li">
+            <a href="#"></a>
+          </li>
+          <li class="nav_li">
+            <a href="#">درباره ما</a>
+          </li>
+          <li class="nav_li">
+            <a href="#">تاریخچه</a>
+          </li>
+          <li class="nav_li">
+            <a href="#">علاقمندی ها</a>
+          </li>
+          <li class="nav_li">
+            <a href="#">تماس با ما</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>{% block content %}
+  <h5>سیستم اطلاعات 20 مورد از آگهی های مربوط به خودروی مورد نظر شما را از سایت باما استخراج و به شما نمایش خواهد داد به دلیل زمان بر بودن فرآیند استخراج از شما تقاضا می شود تا زمان دریافت پیغام یا مشاهده نتیجه صبور باشید</h5>
+  <a href="{% url 'main:HomePage' %}"><img alt="Carfind"
+       src="./../static/image/logo.jpg"
+       style="margin-left:auto; margin-right:auto; margin-top:5%; margin-bottom:7px; display:block; border:none;"></a>
+  <form action="{% url 'main:search_result' %}"
+        method="post">
+    {% csrf_token %}
+    <div class="rcorners2"
+         style="height:40px;">
+      <input class="srch-card"
+           name="term"
+           placeholder="نام خودرو..."
+           type="text">
+    </div><button class="srch-btn"
+          style="font-size:14px; margin-left:auto; margin-right:auto; margin-top:20px; height:35px; display:block; outline:none;"
+          type="submit">پیدا کن</button>
+  </form><br>
+  <br>
+  {% endblock content %}
 </body>
 </html>

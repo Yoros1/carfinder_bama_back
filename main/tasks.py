@@ -53,7 +53,7 @@ def inspect(detail):
             return 0
 
     car_data = (brand, model, style, release_date, odo_meter,
-                price, pre_pay, ins_amo, ins_num, description)
+                price, pre_pay, ins_amo, ins_num, description,)
     return car_data
 
 @shared_task
@@ -73,8 +73,6 @@ def fetch(last_page, link):
             if data != 0:
                 car_count += 1
                 main_list.append(data)
-                if car_count > 9:
-                    return main_list
 
 # class TestFetch(Task):
 #     '''doc'''
