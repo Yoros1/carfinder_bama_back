@@ -30,7 +30,7 @@ mathparse==0.1.2
 mccabe==0.6.1
 monotonic==1.5
 murmurhash==1.0.2
-nltk==3.4.1
+nltk==3.4.5
 numpy==1.16.3
 Pint==0.9
 plac==0.9.6
