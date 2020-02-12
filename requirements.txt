@@ -9,7 +9,7 @@ chardet==3.0.4
 ChatterBot==1.0.5
 colorama==0.4.1
 cymem==2.0.2
-Django==2.1.7
+Django==2.2.10
 dnspython==1.16.0
 entrypoints==0.3
 eventlet==0.24.1
